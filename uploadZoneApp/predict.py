@@ -1,10 +1,13 @@
 import pickle
 import pandas as pd
+import os
+module_dir = os.path.dirname(__file__)  # get current directory
+
 
 def main(list_value):
-    filename = "/home/aloka/Documents/Bird ML/Server/uploadZoneApp/models/final_model.pkl"
+    filename = os.path.join(module_dir, 'models/final_model.pkl')
     loaded_model=pickle.load(open(filename, 'rb'))
-    data=pd.read_excel('/home/aloka/Documents/Bird ML/classifcation_detail/Birds2.xlsx')
+    data=pd.read_excel(os.path.join(module_dir, 'models/Birds.xlsx'))
     data.head()
     beak = data['Beak shape'].str.split(', ', n = 1, expand = True)
     data['Beak shape'] = beak[0]

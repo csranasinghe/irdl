@@ -12,20 +12,6 @@ layer {
     mirror: true
     mean_value: 127.5
     mean_value: 127.5
-   name: "MobileNet-SSD"
-layer {
-  name: "data"
-  type: "AnnotatedData"
-  top: "data"
-  top: "label"
-  include {
-    phase: TRAIN
-  }
-  transform_param {
-    scale: 0.007843
-    mirror: true
-    mean_value: 127.5
-    mean_value: 127.5
     mean_value: 127.5
     resize_param {
       prob: 1.0

@@ -34,42 +34,6 @@ def find_top_after_bn(layers, name, top):
     return top
 
 def pre_process(expected_proto, new_proto):
-    net_import os
-import sys
-import argparse
-import logging
-
-import numpy as np
-try:
-    caffe_root = '/home/yaochuanqi/work/caffe/'
-    sys.path.insert(0, caffe_root + 'python')
-    import caffe
-except ImportError:
-    logging.fatal("Cannot find caffe!")
-from caffe.proto import caffe_pb2
-from google.protobuf import text_format
-
-def make_parser():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--model', type=str, required=True, help='.prototxt file for inference')
-    parser.add_argument('--weights', type=str, required=True, help='.caffemodel file for inference')
-    return parser
-
-bn_maps = {}
-def find_top_after_bn(layers, name, top):
-    bn_maps[name] = {} 
-    for l in layers:
-        if len(l.bottom) == 0:
-            continue
-        if l.bottom[0] == top and l.type == "BatchNorm":
-            bn_maps[name]["bn"] = l.name
-            top = l.top[0]
-        if l.bottom[0] == top and l.type == "Scale":
-            bn_maps[name]["scale"] = l.name
-            top = l.top[0]
-    return top
-
-def pre_process(expected_proto, new_proto):
     net_specs = caffe_pb2.NetParameter()
     net_specs2 = caffe_pb2.NetParameter()
     with open(expected_proto, "r") as fp:

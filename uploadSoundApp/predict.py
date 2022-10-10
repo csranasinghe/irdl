@@ -8,13 +8,15 @@ import librosa.display
 
 import numpy as np
 import pandas as pd
+import os
+module_dir = os.path.dirname(__file__)  # get current directory
 
 import librosa
 
 import seaborn as sns
 sns.set()
 
-train_df= pd.read_csv('/home/aloka/Documents/Bird ML/Server/uploadSoundApp/models/train.csv')
+train_df= pd.read_csv(os.path.join(module_dir, 'models/train.csv'))
 
 ebird_to_id = {}
 id_to_ebird = {}
@@ -26,7 +28,7 @@ for idx, unique_ebird_code in enumerate(train_df.ebird_code.unique()):
 sequence_length=50
 
 from tensorflow import keras
-model = keras.models.load_model('D:/BirdML/sound/best_model.h5')
+model = keras.models.load_model(os.path.join(module_dir, 'models/best_model.h5'))
 
 def predict_submission(audio_file_path):        
     loaded_audio_sample = []

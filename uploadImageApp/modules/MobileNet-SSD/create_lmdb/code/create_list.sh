@@ -22,30 +22,6 @@ else
     j=0
 	for img in `ls ${data_root_dir}/Images|sort -h`
 	do
-		img_list[${j}]=${img# !/bin/bash
-
-# This file is used to create the list of train and test files for training and testing procedures. After the run trainval.txt, test.txt and test_name_size.txt files will be generated. These files map each image to its label file.
-
-# Modify the 'data_root_dir' to the location where your Images and Labels folders exist.
-data_root_dir=/media/vkchcp0013/mstu_hpat/priyal/create_lmdb/Dataset/  # Modify the path with your folder having Images and Labels directories.
-
-current_dir=`pwd`
-echo "current_dir: "${current_dir}
-dst_all_tmp=${current_dir}"/all_tmp.txt"
-dst_file_trainval=${current_dir}"/trainval.txt"
-dst_file_test=${current_dir}"/test.txt"
-dst_file_test_name_size=${current_dir}"/test_name_size.txt"
-
-length_imgs=`ls -l ${data_root_dir}/Images|grep '^-'|wc -l`
-length_labels=`ls -l ${data_root_dir}/Labels|grep '^-'|wc -l`
-echo "all images count: "${length_imgs}
-echo "all labels count: "${length_labels}
-if [ ${length_imgs} != ${length_labels} ]; then
-	echo "Images and Labels not equal count. Images and Labels must be same count!"
-else
-    j=0
-	for img in `ls ${data_root_dir}/Images|sort -h`
-	do
 		img_list[${j}]=${img}
 		((j++))
 	done

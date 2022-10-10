@@ -20,28 +20,6 @@ net = caffe.Net(net_file,caffe_model,caffe.TEST)
 
 CLASSES = ('background',
            'aeroplane', 'bicycle', 'bird', 'boat',
-           'bottle', 'bus', 'car', 'cat'import numpy as np  
-import sys,os  
-import cv2
-caffe_root = '/home/yaochuanqi/work/ssd/caffe/'
-sys.path.insert(0, caffe_root + 'python')  
-import caffe  
-
-
-net_file= 'deploy.prototxt'  
-caffe_model='mobilenet_iter_73000.caffemodel'  
-test_dir = "images"
-
-if not os.path.exists(caffe_model):
-    print(caffe_model + " does not exist")
-    exit()
-if not os.path.exists(net_file):
-    print(net_file + " does not exist")
-    exit()
-net = caffe.Net(net_file,caffe_model,caffe.TEST)  
-
-CLASSES = ('background',
-           'aeroplane', 'bicycle', 'bird', 'boat',
            'bottle', 'bus', 'car', 'cat', 'chair',
            'cow', 'diningtable', 'dog', 'horse',
            'motorbike', 'person', 'pottedplant',
